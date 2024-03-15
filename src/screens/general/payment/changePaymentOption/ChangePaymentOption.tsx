@@ -31,9 +31,23 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 import AppColors from '../../../../constants/colors/AppColors';
 import SpecialCustomInputScreen from '../../../../constants/reusable/SpecialCustomInput';
 import CommonButtonScreen from '../../../../constants/reusable/CommonButton';
+import MyCardScreen from './MyCards';
 
 const ChangePaymentOptionScreen = ({ navigation }: { navigation: any }) => {
-  const flatItem = ['Personal Info', 'Address Info', 'KYC Verification'];
+  const flatItem = [
+    {
+      label: 'My Cards',
+      imagePath: require('../../../../images/card.png'),
+    },
+    {
+      label: 'Wallets',
+      imagePath: require('../../../../images/wallet.png'),
+    },
+    {
+      label: 'Coins',
+      imagePath: require('../../../../images/coins.png'),
+    },
+  ];
 
   const [SelectedIndex, setSelectedIndex] = useState(0);
   const [slide, setSlide] = useState(0);
@@ -89,6 +103,7 @@ const ChangePaymentOptionScreen = ({ navigation }: { navigation: any }) => {
             style={{
               fontFamily: 'Lato_700Bold',
               fontSize: 32,
+
               color: AppColors.white,
               lineHeight: 34,
             }}
@@ -128,336 +143,103 @@ const ChangePaymentOptionScreen = ({ navigation }: { navigation: any }) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            width: '90%',
-            marginLeft: '5%',
+            width: '100%',
             gap: 35,
-            marginRight: '5%',
           }}
         >
           <View
             style={{
               display: 'flex',
-              flexDirection: 'column',
+              justifyContent: 'center',
+              width: '90%',
+              marginLeft: '5%',
+              marginRight: '5%',
+              gap: 10,
+              marginTop: 20,
+              flexDirection: 'row',
               alignItems: 'center',
-              width: '100%',
-              gap: 20,
             }}
           >
-            <Image
-              style={{ width: 100, height: 100 }}
-              source={require('../../../../images/property_details_curve.png')}
-              resizeMode="cover"
-            />
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                width: '100%',
-                gap: 20,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 27.46,
-                  fontFamily: 'Lato_700Bold',
-                  color: AppColors.black,
-                }}
-              >
-                Marshall Meadows
-              </Text>
-              <Text
-                style={{
-                  fontSize: 16.02,
-                  fontFamily: 'Lato_400Regular',
-                  color: AppColors.primaryColor,
-                }}
-              >
-                Payment on Nov 25, 2023
-              </Text>
-            </View>
-          </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              width: '100%',
-              gap: 20,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 54.91,
-                fontFamily: 'Lato_700Bold',
-                color: AppColors.primaryColor,
-              }}
-            >
-              ₹ 10,200.00
-            </Text>
-            <TouchableOpacity
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: 'rgba(138, 202, 202, 0.1)',
-                height: 60,
-                width: '100%',
-                borderRadius: 18.3,
-              }}
-            >
-              <View
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'flex-start',
-                  gap: 8,
-                }}
-              >
-                <Image
-                  style={{ width: 20, height: 20 }}
-                  source={require('../../../../images/cream_info.png')}
-                  resizeMode="contain"
-                />
-                <Text
-                  style={{
-                    color: AppColors.primaryColor,
-                    fontFamily: 'Lato_400Regular',
-                    fontSize: 16.02,
-                  }}
+            {flatItem.map((item, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  style={[
+                    {
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      width: '30%',
+                      height: 90,
+                      paddingTop: 6,
+                      paddingBottom: 6,
+                      borderWidth: 1,
+                      borderRadius: 12,
+                    },
+                    SelectedIndex === index
+                      ? {
+                          borderColor: AppColors.primaryColor,
+                          backgroundColor: AppColors.primaryColor,
+                        }
+                      : {
+                          borderColor: AppColors.primaryColor,
+                          backgroundColor: AppColors.white,
+                        },
+                  ]}
+                  onPress={() => handlePress(item, index)}
                 >
-                  Payment fee ₹200 has been applied
-                </Text>
-              </View>
-            </TouchableOpacity>
+                  <Image
+                    style={{ height: 40, width: 40 }}
+                    source={item.imagePath}
+                    resizeMode="contain"
+                    tintColor={
+                      SelectedIndex === index
+                        ? AppColors.white
+                        : AppColors.primaryColor
+                    }
+                  />
+                  <Text
+                    style={[
+                      {
+                        fontSize: 20,
+                        fontFamily: 'Lato_400Regular',
+                      },
+                      SelectedIndex === index
+                        ? { color: AppColors.white }
+                        : { color: AppColors.primaryColor },
+                    ]}
+                  >
+                    {item.label}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
           </View>
+          {SelectedIndex === 0 && <MyCardScreen />}
         </View>
       </ScrollView>
       <View
         style={{
-          position: 'absolute',
-          bottom: 0,
-          backgroundColor: '#F2F2F2',
-          height: 330,
           width: '100%',
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'absolute',
+          bottom: 90,
         }}
       >
-        <View
-          style={{
-            width: '90%',
-            marginLeft: '5%',
-            marginRight: '5%',
-            height: '90%',
-            marginTop: '5%',
-            marginBottom: '5%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
+        <CommonButtonScreen
+          data={{
+            title: 'Continue',
+            width: 205,
+            height: 55,
+            doPress: () => {
+              navigation.navigate('confirmMakePayment');
+            },
           }}
-        >
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: 20,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 20.59,
-                color: '#030319',
-                fontFamily: 'Lato_700Bold',
-              }}
-            >
-              Default - Choose Cards
-            </Text>
-            <View
-              style={{
-                width: '100%',
-                backgroundColor: AppColors.white,
-                minHeight: 90,
-                maxHeight: 140,
-                borderRadius: 18.3,
-                display: 'flex',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <View
-                style={{
-                  width: '90%',
-                  marginLeft: '5%',
-                  marginRight: '5%',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}
-              >
-                <View
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-start',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginTop: 10,
-                    gap: 10,
-                  }}
-                >
-                  <Image
-                    style={{ width: 60, height: 25 }}
-                    source={require('../../../../images/bank_one.png')}
-                    resizeMode="contain"
-                  />
-                  <View
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'flex-start',
-                      gap: 10,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        fontSize: 16.02,
-                        color: '#030319',
-                        fontFamily: 'Lato_700Bold',
-                      }}
-                    >
-                      Axis Bank Debit Card
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: 13.73,
-                        color: '#8F92A1',
-                        fontFamily: 'Lato_400Regular',
-                      }}
-                    >
-                      XXXX-XXXX-2354
-                    </Text>
-                  </View>
-                </View>
-                {!hasToggleCard && (
-                  <TouchableOpacity
-                    onPress={() => {
-                      setHasToggleCard(true);
-                    }}
-                  >
-                    <Image
-                      style={{ height: 40, width: 40 }}
-                      source={require('../../../../images/green_arrow_down.png')}
-                      resizeMode="contain"
-                      tintColor={'#105D38'}
-                    />
-                  </TouchableOpacity>
-                )}
-                {hasToggleCard && (
-                  <TouchableOpacity
-                    onPress={() => {
-                      setHasToggleCard(false);
-                    }}
-                  >
-                    <Image
-                      style={{ height: 20, width: 20 }}
-                      source={require('../../../../images/green_arrow_up.png')}
-                      resizeMode="contain"
-                      tintColor={'#105D38'}
-                    />
-                  </TouchableOpacity>
-                )}
-              </View>
-              {hasToggleCard && (
-                <View
-                  style={{
-                    width: '100%',
-                    marginTop: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <View
-                    style={{
-                      width: '100%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      flexDirection: 'column',
-                    }}
-                  >
-                    <Text
-                      style={{
-                        fontSize: 10,
-                        fontFamily: 'Lato_400Regular',
-                        color: AppColors.primaryColor,
-                      }}
-                    >
-                      EXP.
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: 10,
-                        fontFamily: 'Lato_400Regular',
-                        color: AppColors.primaryColor,
-                      }}
-                    >
-                      09/2024
-                    </Text>
-                  </View>
-                </View>
-              )}
-            </View>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                width: '100%',
-                gap: 25,
-              }}
-            >
-              <TouchableOpacity
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  borderColor: AppColors.black,
-                  borderStyle: 'solid',
-                  borderWidth: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#F2F2F2',
-                  height: 60,
-                  width: '100%',
-                  borderRadius: 18.3,
-                }}
-              >
-                <Text
-                  style={{
-                    color: AppColors.primaryColor,
-                    fontFamily: 'Lato_700Bold',
-                    fontSize: 20,
-                  }}
-                >
-                  Change Payment Method
-                </Text>
-              </TouchableOpacity>
-              <CommonButtonScreen
-                data={{
-                  title: 'Proceed to Pay',
-                  width: '100%',
-                  height: 55,
-                  doPress: () => {
-                    console.log('CLIKING');
-                  },
-                }}
-              />
-            </View>
-          </View>
-        </View>
+        />
       </View>
     </View>
   );

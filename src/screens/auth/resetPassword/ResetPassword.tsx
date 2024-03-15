@@ -117,6 +117,7 @@ const ResetPasswordScreen = ({ navigation }: { navigation: any }) => {
                   width: '94%',
                   height: '100%',
                   marginLeft: '3%',
+
                   fontFamily: 'Lato_400Regular',
                 }}
                 id="password"

@@ -14,6 +14,7 @@ import { OnboardingScreenTwo } from '../screens/auth/onBoarding/OnBoardingTwo';
 import { OnboardingScreenThree } from '../screens/auth/onBoarding/OnBoardingThree';
 import { GetStartedScreen } from '../screens/auth/onBoarding/GetStarted';
 import { LoginScreen } from '../screens/auth/LoginScreen';
+import ResetPasswordScreen from '../screens/auth/resetPassword/ResetPassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -92,6 +93,14 @@ export const StackNavigator = () => {
         }}
       />
       <Stack.Screen
+        name="resetPassword"
+        component={ResetPasswordScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
         name="selfieUpload"
         component={SelfieUploadingScreen}
         options={{
@@ -101,9 +110,3 @@ export const StackNavigator = () => {
     </Stack.Navigator>
   );
 };
-
-// const MainNavigator = () => {
-//   const { userData, updateUserData } = loginContext();
-//   return userData.hasLoggedIn ? <RootNavigation /> : <StackNavigator />;
-// };
-// export default MainNavigator;
