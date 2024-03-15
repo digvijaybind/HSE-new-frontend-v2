@@ -133,6 +133,7 @@ const PortfolioScreen = ({ navigation }: { navigation: any }) => {
             marginLeft: '5%',
             marginRight: '5%',
             gap: 20,
+            marginBottom: 100,
           }}
         >
           <View

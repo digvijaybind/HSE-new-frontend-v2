@@ -141,7 +141,7 @@ The project is spread over 0.51 Acres . Launched in April\r 2022,Marshall Meadow
           style={{
             marginTop: 20,
             width: '100%',
-            maxHeight: 180,
+            maxHeight:230,
             paddingTop: 10,
             backgroundColor: AppColors.white,
             paddingBottom: 20,
@@ -221,9 +221,9 @@ The project is spread over 0.51 Acres . Launched in April\r 2022,Marshall Meadow
               }}
             >
               <Image
-                style={{ height: 40, width: '100%' }}
+                style={{height: 120, width: '100%' }}
                 source={require('../../../../images/amenities_image.png')}
-                resizeMode="cover"
+                resizeMode="contain"
               />
             </View>
           )}

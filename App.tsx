@@ -18,7 +18,6 @@ import { Ramaraja_400Regular } from '@expo-google-fonts/ramaraja';
 import * as SplashScreen from 'expo-splash-screen';
 import { Asset } from 'expo-asset';
 import { loadAsync, useFonts } from 'expo-font';
-import Route from './src/navigations/Router';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 

@@ -281,6 +281,9 @@ const ResidentialScreen = ({ navigation }: { navigation: any }) => {
                     backgroundColor: AppColors.primaryColor,
                     justifyContent: 'center',
                   }}
+                  onPress={() => {
+                    navigation.navigate('confirmSummary');
+                  }}
                 >
                   <Text
                     style={{

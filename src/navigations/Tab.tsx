@@ -21,6 +21,9 @@ import SettingsScreen from '../screens/general/settings/Settings';
 import DrawerContent from '../components/DrawerContent';
 import PortfolioScreen from '../screens/general/portfolio/Portfolio';
 import PropertyDetailsScreen from '../screens/general/propertyDetails/PropertyDetails';
+import ConfirmationSummaryScreen from '../screens/general/payment_summary/summary/ConfirmationSummary';
+import MakePaymentScreen from '../screens/general/payment/makePayment/MakePayment';
+import ChangePaymentOptionScreen from '../screens/general/payment/changePaymentOption/ChangePaymentOption';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -132,7 +135,7 @@ export function DrawerNavigation() {
   const navigation = useNavigation();
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <DrawerContent navigation={navigation} />}
+      drawerContent={(props: any) => <DrawerContent navigation={navigation} />}
       screenOptions={{
         drawerStyle: {
           backgroundColor: '#006B6B',
@@ -179,6 +182,27 @@ export function RootNavigation() {
       <Stack.Screen
         name="propertyDetails"
         component={PropertyDetailsScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="confirmSummary"
+        component={ConfirmationSummaryScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="confirmMakePayment"
+        component={MakePaymentScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="changePaymentOption"
+        component={ChangePaymentOptionScreen}
         options={{
           headerShown: false,
         }}

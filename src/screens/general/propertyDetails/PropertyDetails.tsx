@@ -33,6 +33,9 @@ import ResidentialScreen from '../../../../src/screens/general/home/Residential'
 import ExchangeScreen from '../../../../src/screens/general/home/Exchange';
 import GrowthScreen from './growth/Growth';
 import OverViewScreen from './overview/OverView';
+import DocumentScreen from './documents/Documents';
+import FaqsScreen from './fqa/Faqs';
+import CommonButtonScreen from '../../../constants/reusable/CommonButton';
 const PropertyDetailsScreen = ({ navigation }: { navigation: any }) => {
   const flatItem = ['Growth', 'Overview', 'Documents', 'FAQ’s'];
 
@@ -233,6 +236,8 @@ const PropertyDetailsScreen = ({ navigation }: { navigation: any }) => {
 
           {SelectedIndex === 0 && <GrowthScreen />}
           {SelectedIndex === 1 && <OverViewScreen />}
+          {SelectedIndex === 2 && <DocumentScreen />}
+          {SelectedIndex === 3 && <FaqsScreen />}
         </View>
       </ScrollView>
       <View
@@ -246,28 +251,16 @@ const PropertyDetailsScreen = ({ navigation }: { navigation: any }) => {
           bottom: 10,
         }}
       >
-        <TouchableOpacity
-          style={{
-            backgroundColor: AppColors.primaryColor,
+        <CommonButtonScreen
+          data={{
+            title: 'Let’s Invest',
             width: 205,
             height: 55,
-            borderRadius: 12,
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
+            doPress: () => {
+              navigation.navigate('confirmSummary');
+            },
           }}
-        >
-          <Text
-            style={{
-              color: AppColors.white,
-              fontFamily: 'Lato_700Bold',
-              fontSize: 20,
-            }}
-          >
-            Let’s Invest
-          </Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );
